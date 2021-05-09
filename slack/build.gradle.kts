@@ -10,4 +10,5 @@ micronaut {
 
 dependencies {
     api("com.slack.api:bolt-micronaut:$boltVersion")
+    testImplementation("io.micronaut:micronaut-http-client")
 }
