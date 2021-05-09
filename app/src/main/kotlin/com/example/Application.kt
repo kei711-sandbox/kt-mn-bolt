@@ -6,6 +6,7 @@ fun main(args: Array<String>) {
     build()
         .args(*args)
         .packages("com.example")
+        .banner(false)
         .start()
 }
 
