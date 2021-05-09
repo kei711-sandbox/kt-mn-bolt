@@ -1,6 +1,6 @@
-package com.example
+package com.example.app
 
-import io.micronaut.runtime.Micronaut.*
+import io.micronaut.runtime.Micronaut.build
 
 fun main(args: Array<String>) {
     build()
