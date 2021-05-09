@@ -1,13 +1,34 @@
-## Micronaut 2.5.1 Documentation
+# kt-mn-bolt
 
-- [User Guide](https://docs.micronaut.io/2.5.1/guide/index.html)
-- [API Reference](https://docs.micronaut.io/2.5.1/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/2.5.1/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
+Kotlin + Micronaut + Bolt
 
----
+## Requirement
 
-## Feature http-client documentation
+- OpenJDK 11
+- direnv
 
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
+### For IntelliJ IDEA Users
+- plugins
+  - EnvFile
 
+## For Developer
+
+```shell
+$ cp .env.sample .env
+$ direnv allow
+```
+
+## For Local Development
+
+### Execute Application
+
+- In the Shell
+  - Execute `./gradlew :app:run`
+- In the IntelliJ IDEA
+  - Run `kt-mn-bolt:app [run]`
+
+### ngrok
+
+```shell
+$ ngrok http 8080
+```
