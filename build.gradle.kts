@@ -1,60 +1,42 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.4.32"
-    id("org.jetbrains.kotlin.kapt") version "1.4.32"
-    id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("io.micronaut.application") version "1.5.0"
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.4.32"
+    id("org.jetbrains.kotlin.jvm") version "1.4.32" apply false
+    id("org.jetbrains.kotlin.kapt") version "1.4.32" apply false
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.4.32" apply false
+    id("com.github.johnrengelman.shadow") version "7.0.0" apply false
+    id("io.micronaut.application") version "1.5.0" apply false
 }
 
 version = "0.1"
 group = "com.example"
 
-val kotlinVersion = project.properties.get("kotlinVersion")
 repositories {
     mavenCentral()
 }
 
-micronaut {
-    runtime("netty")
-    testRuntime("junit5")
-    processing {
-        incremental(true)
-        annotations("com.example.*")
+subprojects {
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "org.jetbrains.kotlin.kapt")
+    apply(plugin = "org.jetbrains.kotlin.plugin.allopen")
+
+    repositories {
+        mavenCentral()
     }
-}
 
-dependencies {
-    implementation("io.micronaut:micronaut-http-client")
-    implementation("io.micronaut:micronaut-runtime")
-    implementation("io.micronaut.kotlin:micronaut-kotlin-extension-functions")
-    implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
-    implementation("javax.annotation:javax.annotation-api")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
-    runtimeOnly("ch.qos.logback:logback-classic")
-    implementation("io.micronaut:micronaut-validation")
-    runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
-}
+    dependencies {
+        "api"(kotlin("stdlib-jdk8"))
+        "api"(kotlin("reflect"))
+        "runtimeOnly"("ch.qos.logback:logback-classic")
+    }
 
+    configure<JavaPluginConvention> {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+    }
 
-application {
-    mainClass.set("com.example.ApplicationKt")
-}
-java {
-    sourceCompatibility = JavaVersion.toVersion("11")
-}
-
-tasks {
-    compileKotlin {
-        kotlinOptions {
-            jvmTarget = "11"
+    listOf("compileKotlin", "compileTestKotlin").forEach {
+        tasks.named<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>(it) {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
         }
     }
-    compileTestKotlin {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
-    }
-
-
 }
