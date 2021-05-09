@@ -13,6 +13,8 @@ micronaut {
 }
 
 dependencies {
+    implementation(project(":slack"))
+
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut.kotlin:micronaut-kotlin-extension-functions")
