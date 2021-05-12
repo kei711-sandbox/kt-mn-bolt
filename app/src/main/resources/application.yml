@@ -3,3 +3,8 @@ micronaut:
     name: ktMnBolt
   server:
     port: 8100
+slack:
+  channel-event:
+    notification:
+      channel-id: '${CHANNEL_EVENT_NOTIFICATION_CHANNEL_ID}'
+      user-name: '${CHANNEL_EVENT_NOTIFICATION_USER_NAME}'
