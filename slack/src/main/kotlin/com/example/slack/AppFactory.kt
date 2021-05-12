@@ -1,11 +1,10 @@
 package com.example.slack
 
-import com.example.slack.command.Command
 import com.slack.api.bolt.App
 import com.slack.api.bolt.AppConfig
+import com.slack.api.bolt.socket_mode.SocketModeApp
 import io.micronaut.context.annotation.Factory
 import javax.inject.Singleton
-
 
 @Factory
 class AppFactory {
@@ -16,9 +15,12 @@ class AppFactory {
     }
 
     @Singleton
-    fun createApp(config: AppConfig, commands: List<Command>): App {
+    fun createApp(config: AppConfig, handlers: List<Handler>): App {
         val app = App(config)
-        commands.forEach { command -> command.apply(app) }
+        handlers.forEach { handler -> handler.apply(app) }
         return app
     }
+
+    @Singleton
+    fun socketModeApp(app: App) = SocketModeApp(app)
 }
