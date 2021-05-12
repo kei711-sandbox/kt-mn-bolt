@@ -1,3 +1,5 @@
 micronaut:
   application:
     name: ktMnBolt
+  server:
+    port: 8100
