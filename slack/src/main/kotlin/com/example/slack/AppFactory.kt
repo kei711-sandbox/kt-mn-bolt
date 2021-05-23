@@ -10,16 +10,10 @@ import javax.inject.Singleton
 class AppFactory {
 
     @Singleton
-    fun createAppConfig(): AppConfig {
-        return AppConfig()
-    }
+    fun appConfig() = AppConfig()
 
     @Singleton
-    fun createApp(config: AppConfig, handlers: List<Handler>): App {
-        val app = App(config)
-        handlers.forEach { handler -> handler.apply(app) }
-        return app
-    }
+    fun app(config: AppConfig, handlers: List<Handler>) = App(config).apply(handlers)
 
     @Singleton
     fun socketModeApp(app: App) = SocketModeApp(app)

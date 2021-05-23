@@ -1,7 +1,10 @@
+import org.jetbrains.kotlin.backend.common.push
+
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.4.32" apply false
-    id("org.jetbrains.kotlin.kapt") version "1.4.32" apply false
-    id("org.jetbrains.kotlin.plugin.allopen") version "1.4.32" apply false
+    kotlin("jvm") version "1.4.32" apply false
+    kotlin("kapt") version "1.4.32" apply false
+    kotlin("plugin.allopen") version "1.4.32" apply false
+    kotlin("plugin.serialization") version "1.4.32" apply false
     id("com.github.johnrengelman.shadow") version "7.0.0" apply false
     id("io.micronaut.application") version "1.5.0" apply false
     id("io.micronaut.library") version "1.5.0" apply false
